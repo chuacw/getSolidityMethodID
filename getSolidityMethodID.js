@@ -3,24 +3,8 @@ chuacw, Singapore, Singapore
 7-8 Feb 2021
 */
 
-var global = (function (g) {
-    return g;
-})(this);
-
-if (typeof global.web3 == "undefined") {
-    // note! without let, or var. Declaring globally
-    const Web3 = require("web3");
-    global.web3 = new Web3();
-    if (typeof global.web3.eth == "undefined") {
-        global.web3.eth = require("web3-eth");
-        if (typeof global.web3.eth.abi == "undefined") {
-            global.web3.eth.abi = require("web3-eth-abi");
-        }
-    }
-    if (typeof global.web3.utils == "undefined") {
-        global.web3.utils = require("web3-utils");
-    }
-}
+const Web3 = require("web3");
+let web3 = new Web3();
 
 function strToBytesX(str, n) {
     let result = [];
@@ -48,7 +32,7 @@ function bytes32(str) {
     return result;
 }
 
-const keccak256 = global.web3.utils.keccak256; // map the function into a shorter alias
+const keccak256 = web3.utils.keccak256; // map the function into a shorter alias
 
 // This function can be used to return the data that is supposed to be placed into 
 // msg.data when sent using sendTransaction
@@ -70,7 +54,9 @@ function getRawTransactionData(methodName, methodParamTypes, ...methodParams) {
     return result;
 }
 
+console.log();
 console.log("Solidity method ID v1.0 Chua Chee Wee (c) 2021");
+console.log();
 
 function showMethodID(funcSig) {
     let arg = funcSig;
