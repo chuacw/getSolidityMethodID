@@ -34,11 +34,13 @@ function bytes32(str) {
 
 const keccak256 = web3.utils.keccak256; // map the function into a shorter alias
 
+const UNDEFINED = "undefined";
+
 // This function can be used to return the data that is supposed to be placed into 
 // msg.data when sent using sendTransaction
 function getRawTransactionData(methodName, methodParamTypes, ...methodParams) {
     let rawMethodID;
-    if (typeof methodParamTypes == "undefined" && typeof methodParams == "undefined") {
+    if (typeof methodParamTypes == UNDEFINED && typeof methodParams == UNDEFINED) {
         rawMethodID = keccak256(`${methodName}()`).slice(0, 10);
     } else {
         rawMethodID = keccak256(`${methodName}(${methodParamTypes})`).slice(0, 10);
