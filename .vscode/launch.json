@@ -12,7 +12,7 @@
                 "<node_internals>/**"
             ],
             "program": "${file}",
-            // "args": ["burn(uint256)"]
+            "args": ["burn(uint256)"]
         }
     ]
 }

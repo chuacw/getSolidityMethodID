@@ -38,7 +38,7 @@ const keccak256 = web3.utils.keccak256; // map the function into a shorter alias
 // msg.data when sent using sendTransaction
 function getRawTransactionData(methodName, methodParamTypes, ...methodParams) {
     let rawMethodID;
-    if (typeof methodParamTypes == undefined && typeof methodParams == undefined) {
+    if (typeof methodParamTypes == "undefined" && typeof methodParams == "undefined") {
         rawMethodID = keccak256(`${methodName}()`).slice(0, 10);
     } else {
         rawMethodID = keccak256(`${methodName}(${methodParamTypes})`).slice(0, 10);
